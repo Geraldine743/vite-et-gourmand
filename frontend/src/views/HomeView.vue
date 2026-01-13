@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <h1>Bienvenue chez Vite et Gourmand 🍔</h1>
+    <p>Le site est prêt à être construit (avec TypeScript) !</p>
   </main>
 </template>
