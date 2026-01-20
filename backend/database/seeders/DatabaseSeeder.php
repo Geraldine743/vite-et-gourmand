@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Test',    
             'lastname' => 'User',
             'email' => 'test@example.com',
+            "password" => "password",
             'phone' => '0601020304',
             'address' => '1 rue du Code',
             'city' => 'Paris',
