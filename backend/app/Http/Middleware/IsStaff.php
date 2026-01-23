@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsAdmin
+class IsStaff
 {
     /**
      * Handle an incoming request.
@@ -18,9 +18,8 @@ class IsAdmin
         if (! $request->user()) {
             return response()->json(['message' => 'Non authentifié'], 401);
         }
-
-        if ($request->user()->role->libelle !== 'admin') {
-            return response()->json(['message' => 'Accès refusé : Réservé aux administrateurs'], 403);
+        if (! in_array($request->user()->role->libelle, ['admin', 'employee'])) {
+            return response()->json(['message' => 'Accès refusé : Réservé au personnel autorisé'], 403);
         }
         return $next($request);
     }
