@@ -45,8 +45,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(Request $request, User $user)
     {
+        $currentUser = $request->user();
+        if ($currentUser->id !== $user->id && !$currentUser->isStaff()) {
+            return response()->json(['message' => 'Accès refusé'], 403);
+        }
         return $user->load('role');
     }
 
@@ -55,6 +59,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $currentUser = $request->user();
+        if ($currentUser->id !== $user->id && !$currentUser->isAdmin()) {
+            return response()->json(['message' => 'Accès refusé'], 403);
+        }
+
         $validatedData = $request->validate([
             'lastname' => 'sometimes|required|string|max:50',
             'firstname' => 'sometimes|required|string|max:50',

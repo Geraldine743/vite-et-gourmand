@@ -59,4 +59,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function isStaff(): bool
+    {
+        return in_array($this->role->libelle, ['employee', 'admin']);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role->libelle === 'admin';
+    }
 }
