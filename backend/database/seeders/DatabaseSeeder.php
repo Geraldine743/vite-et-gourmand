@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,19 +17,46 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(RoleSeeder::class);
-        // User::factory(10)->create();
 
         User::factory()->create([
-            'firstname' => 'Test',    
-            'lastname' => 'User',
-            'email' => 'test@example.com',
-            "password" => "password",
+            'firstname' => 'Dupond',    
+            'lastname' => 'José',
+            'email' => 'dupond.jose@example.com',
+            "password" => Hash::make("changeMe123!"),
             'phone' => '0601020304',
             'address' => '1 rue du Code',
-            'city' => 'Paris',
-            'postal_code' => '75000',
+            'city' => 'Toulouse',
+            'postal_code' => '71000',
             'country' => 'France',
             'role_id' => 1,
         ]);
+
+        User::factory()->create([
+            'firstname' => 'Dupont',    
+            'lastname' => 'Josette',
+            'email' => 'dupont.josette@example.com',
+            "password" => Hash::make("password123!"),
+            'phone' => '0689070605',
+            'address' => '20 rue du Bug',
+            'city' => 'Toulouse',
+            'postal_code' => '71000',
+            'country' => 'France',
+            'role_id' => 2,
+        ]);
+
+        User::factory()->create([
+            'firstname' => 'Milou',    
+            'lastname' => 'Tintin',
+            'email' => 'milou.tintin@example.com',
+            "password" => Hash::make("snowy123!"),
+            'phone' => '0678050403',
+            'address' => '15 rue du Mystere',
+            'city' => 'Toulouse',
+            'postal_code' => '71000',
+            'country' => 'France',
+            'role_id' => 3,
+        ]);
+
+        User::factory(10)->create();
     }
 }
