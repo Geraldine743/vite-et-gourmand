@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
 
+        $this->call(AllergeneSeeder::class);
+
         User::factory()->create([
             'firstname' => 'Dupond',    
             'lastname' => 'José',

@@ -4,9 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\AllergeneController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::apiResource('/allergenes',AllergeneController::class)->only(['index']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -18,6 +20,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware( 'is_staff')->group(function () {
         Route::get('/users', [UserController::class, 'index']);
+        Route::apiResource('/allergenes',AllergeneController::class)->except(['index','show']);
     });
 
     Route::middleware('is_admin')->group(function () {
