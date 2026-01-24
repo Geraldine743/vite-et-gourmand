@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Type_plat extends Model
 {
-    //
+    protected $fillable = ['libelle'];
 }
