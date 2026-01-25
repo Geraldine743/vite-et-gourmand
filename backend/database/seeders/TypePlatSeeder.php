@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\TypePlat;
 use Illuminate\Database\Seeder;
-use App\Models\Type_plat;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class Type_platSeeder extends Seeder
+
+class TypePlatSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +17,7 @@ class Type_platSeeder extends Seeder
         $typesPlat = ['Entrée', 'Plat principal', 'Dessert'];
 
         foreach ($typesPlat as $type) {
-            Type_plat::firstOrCreate(['libelle' => $type]);
+            TypePlat::firstOrCreate(['libelle' => $type]);
         }
     }
 }

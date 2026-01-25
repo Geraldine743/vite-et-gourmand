@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Type_plat extends Model
+class TypePlat extends Model
 {
     protected $fillable = ['libelle'];
 }

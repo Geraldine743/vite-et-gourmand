@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('type_plat_id')->constrained();
             $table->string('titre_plat');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
