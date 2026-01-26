@@ -13,7 +13,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return Menu::all()->with('regime', 'theme', 'plats')->get();
+        return Menu::with('regime', 'theme', 'plats')->get();
     }
 
     /**
@@ -22,7 +22,7 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'titre' => 'required|string|max:255',
             'description' => 'nullable|string',
             'nb_personne' => 'required|integer|min:1',
             'prix_par_personne' => 'required|numeric|min:0',
@@ -55,7 +55,7 @@ class MenuController extends Controller
     public function update(Request $request, Menu $menu)
     {
         $validated = $request->validate([
-            'name' => 'sometimes|required|string|max:255',
+            'titre' => 'sometimes|required|string|max:255',
             'description' => 'sometimes|nullable|string',
             'nb_personne' => 'sometimes|required|integer|min:1',
             'prix_par_personne' => 'sometimes|required|numeric|min:0',

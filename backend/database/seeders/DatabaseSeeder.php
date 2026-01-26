@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PlatSeeder::class);
         $this->call(RegimeSeeder::class);
         $this->call(ThemeSeeder::class);
+        $this->call(MenuSeeder::class);
 
         User::factory()->create([
             'firstname' => 'Dupond',    
