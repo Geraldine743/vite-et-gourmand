@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AllergeneSeeder::class);
         $this->call(TypePlatSeeder::class);
         $this->call(PlatSeeder::class);
+        $this->call(RegimeSeeder::class);
 
         User::factory()->create([
             'firstname' => 'Dupond',    
