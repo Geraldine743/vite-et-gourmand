@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\PlatController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ThemeController;
@@ -15,6 +16,7 @@ Route::apiResource('/allergenes',AllergeneController::class)->only(['index']);
 Route::apiResource('/plats',PlatController::class)->only(['index']);
 Route::apiResource('/regimes',RegimeController::class)->only(['index']);
 Route::apiResource('/themes',ThemeController::class)->only(['index']);
+Route::apiResource('/menus',MenuController::class)->only(['index','show']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -30,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('/plats',PlatController::class)->except(['index','show']);
         Route::apiResource('/regimes',RegimeController::class)->except(['index','show']);
         Route::apiResource('/themes',ThemeController::class)->except(['index','show']);
+        Route::apiResource('/menus',MenuController::class)->except(['index','show']);
     });
 
     Route::middleware('is_admin')->group(function () {
