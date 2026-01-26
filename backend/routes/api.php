@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\PlatController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ThemeController;
 use App\Http\Controllers\Api\RegimeController;
+use App\Http\Controllers\Api\HoraireController;
 use App\Http\Controllers\Api\AllergeneController;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -17,6 +18,7 @@ Route::apiResource('/plats',PlatController::class)->only(['index']);
 Route::apiResource('/regimes',RegimeController::class)->only(['index']);
 Route::apiResource('/themes',ThemeController::class)->only(['index']);
 Route::apiResource('/menus',MenuController::class)->only(['index','show']);
+Route::apiResource('/horaires',HoraireController::class)->only(['index']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -33,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('/regimes',RegimeController::class)->except(['index','show']);
         Route::apiResource('/themes',ThemeController::class)->except(['index','show']);
         Route::apiResource('/menus',MenuController::class)->except(['index','show']);
+        Route::apiResource('/horaires',HoraireController::class)->except(['index']);
     });
 
     Route::middleware('is_admin')->group(function () {
