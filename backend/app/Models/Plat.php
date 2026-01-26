@@ -18,10 +18,14 @@ class Plat extends Model
 
     public function allergenes()
     {
-        return $this->belongsToMany(Allergene::class, 'allergene_plats');
+        return $this->belongsToMany(Allergene::class, 'allergene_plats', 'plat_id', 'allergene_id');
     }
     public function typePlat()
     {
         return $this->belongsTo(TypePlat::class, 'type_plat_id');
+    }
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'plat_menus', 'plat_id', 'menu_id');
     }
 }
