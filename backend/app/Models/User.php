@@ -59,6 +59,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function avis()
+    {
+        return $this->hasMany(Avis::class);
+    }
 
     public function isStaff(): bool
     {
