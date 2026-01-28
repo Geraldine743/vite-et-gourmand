@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemeSeeder::class);
         $this->call(MenuSeeder::class);
         $this->call(HoraireSeeder::class);
+        $this->call(StatutCommandeSeeder::class);
 
         User::factory()->create([
             'firstname' => 'Dupond',    
