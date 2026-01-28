@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Avis;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -65,6 +66,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 3,
         ]);
 
-        User::factory(10)->create();
+        $user=User::factory(10)->create();
+        Avis::factory(30)->recycle($user)->create();
     }
 }
