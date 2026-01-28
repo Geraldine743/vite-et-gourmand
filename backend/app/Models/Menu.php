@@ -11,7 +11,7 @@ class Menu extends Model
     protected $fillable = [
         'titre',
         'description',
-        'nb_personne',
+        'nb_personne_min',
         'prix_par_personne',
         'condition',
         'stock',

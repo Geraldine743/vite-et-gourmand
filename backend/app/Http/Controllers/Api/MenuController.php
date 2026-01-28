@@ -24,7 +24,7 @@ class MenuController extends Controller
         $validated = $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'nb_personne' => 'required|integer|min:1',
+            'nb_personne_min' => 'required|integer|min:1',
             'prix_par_personne' => 'required|numeric|min:0',
             'condition' => 'nullable|string',
             'stock' => 'required|integer|min:0',
@@ -57,7 +57,7 @@ class MenuController extends Controller
         $validated = $request->validate([
             'titre' => 'sometimes|required|string|max:255',
             'description' => 'sometimes|nullable|string',
-            'nb_personne' => 'sometimes|required|integer|min:1',
+            'nb_personne_min' => 'sometimes|required|integer|min:1',
             'prix_par_personne' => 'sometimes|required|numeric|min:0',
             'condition' => 'sometimes|nullable|string',
             'stock' => 'sometimes|required|integer|min:0',

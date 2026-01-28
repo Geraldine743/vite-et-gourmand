@@ -21,7 +21,7 @@ class MenuFactory extends Factory
         return [
             'titre' => $this->faker->word(),
             'description' => $this->faker->sentence(),
-            'nb_personne' => $this->faker->numberBetween(1, 10),
+            'nb_personne_min' => $this->faker->numberBetween(1, 10),
             'prix_par_personne' => $this->faker->randomFloat(2, 5, 100),
             'condition' => $this->faker->sentence(),
             'stock' => $this->faker->numberBetween(0, 50),

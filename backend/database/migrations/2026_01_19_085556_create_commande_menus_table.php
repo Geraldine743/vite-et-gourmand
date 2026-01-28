@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('commande_menus', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('commande_id')->constrained();
-            $table->foreignId('menu_id')->constrained();
+            $table->foreignId('commande_id')->constrained()->onDelete('cascade');
+            $table->foreignId('menu_id')->constrained()->onDelete('cascade');
+            $table->integer('nb_personnes')->unsigned();
+            $table->decimal('prix_unitaire_fixe', 8, 2);
+            $table->decimal('prix_total_ligne', 8, 2);
             $table->timestamps();
         });
     }
