@@ -31,10 +31,10 @@ class AvisController extends Controller
         ]);
         $validatedData['user_id'] = $request->user('sanctum')->id;
         $validatedData['publie'] = false; 
-        $avis = Avis::create($validatedData);
+        $avi = Avis::create($validatedData);
         return response()->json([
             'message' => 'Avis enregistré avec succès. Il sera publié après validation.', 
-            'avis' => $avis],
+            'avis' => $avi],
             201);
     }
 
@@ -49,25 +49,25 @@ class AvisController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Avis $avis)
+    public function update(Request $request, Avis $avi)
     {
         $validatedData = $request->validate([
             'description' => 'sometimes|required|string|max:1000',
             'note' => 'sometimes|required|integer|min:1|max:5',
             'publie' => 'sometimes|required|boolean',
         ]);
-        $avis->update($validatedData);
+        $avi->update($validatedData);
         return response()->json(['message' => 'Avis mis à jour avec succès', 
-        'avis' => $avis], 
+        'avis' => $avi], 
         200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Avis $avis)
+    public function destroy(Avis $avi)
     {
-        $avis->delete();
+        $avi->delete();
         return response()->json(['message' => 'Avis supprimé avec succès'], 200);
     }
 }
