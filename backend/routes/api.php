@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AvisController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\PlatController;
 use App\Http\Controllers\Api\UserController;
@@ -19,6 +20,7 @@ Route::apiResource('/regimes',RegimeController::class)->only(['index']);
 Route::apiResource('/themes',ThemeController::class)->only(['index']);
 Route::apiResource('/menus',MenuController::class)->only(['index','show']);
 Route::apiResource('/horaires',HoraireController::class)->only(['index']);
+Route::apiResource('/avis', AvisController::class)->only(['index']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -27,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::put('/users/{user}', [UserController::class, 'update']);
+    Route::apiResource('/avis', AvisController::class)->only(['store']);
 
     Route::middleware( 'is_staff')->group(function () {
         Route::get('/users', [UserController::class, 'index']);
@@ -36,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('/themes',ThemeController::class)->except(['index','show']);
         Route::apiResource('/menus',MenuController::class)->except(['index','show']);
         Route::apiResource('/horaires',HoraireController::class)->except(['index']);
+        Route::apiResource('/avis', AvisController::class)->except(['index','store','show']);
     });
 
     Route::middleware('is_admin')->group(function () {
