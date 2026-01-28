@@ -32,4 +32,10 @@ class Menu extends Model
     {
         return $this->belongsToMany(Plat::class, 'plat_menus', 'menu_id', 'plat_id');
     }
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class, 'commande_menus')
+                ->withPivot('nb_personnes', 'prix_unitaire_fixe', 'prix_total_ligne')
+                ->withTimestamps();
+    }
 }
