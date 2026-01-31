@@ -95,9 +95,13 @@ class CommandeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, Commande $commande)
     {
-        //
+        $currentUser = $request->user('sanctum');
+        if ($currentUser->id !== $commande->user_id && !$currentUser->isStaff()) {
+            return response()->json(['message' => 'Accès refusé'], 403);
+        }
+        return response()->json($commande->load(['statutCommande', 'menus']));
     }
 
     /**
