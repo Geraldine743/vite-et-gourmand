@@ -107,9 +107,41 @@ class CommandeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Commande $commande)
     {
-        //
+        $currentUser = $request->user('sanctum');
+        if ($currentUser->id !== $commande->user_id && !$currentUser->isStaff()) {
+            return response()->json(['message' => 'Accès refusé'], 403);
+        }
+
+        if ($currentUser->id === $commande->user_id){
+            if ($commande->statut_commande_id !== 1) {
+                return response()->json(['message' => 'Impossible de modifier la commande. Veuillez contacter Vite&Goumand'], 400);
+            }
+
+            $validatedData = $request->validate([
+                'date_prestation' => 'sometimes|date|after:today',
+                'date_livraison' => 'sometimes|date|after:today',
+                'adresse_livraison' => 'sometimes|string|max:50',
+                'ville_livraison' => 'sometimes|string|max:50',
+                'code_postal_livraison' => 'sometimes|string|max:20',
+                'heure_livraison' => 'sometimes|string|max:10',
+            ]);
+
+            $commande->update($validatedData);
+            return response()->json(['message' => 'Commande mise à jour', 'commande' => $commande->load(['statutCommande', 'menus'])]);
+        }
+
+        if ($currentUser->isStaff()) {
+            $validatedData = $request->validate([
+                'statut_commande_id' => 'required|exists:statut_commandes,id',
+                'pret_materiel' => 'boolean',
+                'retour_materiel' => 'boolean'
+            ]);
+
+            $commande->update($validatedData);
+            return response()->json(['message' => 'Commande mise à jour', 'commande' => $commande->load(['statutCommande', 'menus'])]);
+        }
     }
 
     /**
