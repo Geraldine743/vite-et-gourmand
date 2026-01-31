@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Avis;
+use App\Models\Commande;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -69,5 +70,6 @@ class DatabaseSeeder extends Seeder
 
         $user=User::factory(10)->create();
         Avis::factory(30)->recycle($user)->create();
+        Commande::factory(50)->recycle($user)->create();
     }
 }
