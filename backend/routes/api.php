@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ThemeController;
 use App\Http\Controllers\Api\RegimeController;
 use App\Http\Controllers\Api\HoraireController;
+use App\Http\Controllers\Api\CommandeController;
 use App\Http\Controllers\Api\AllergeneController;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -30,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::put('/users/{user}', [UserController::class, 'update']);
     Route::apiResource('/avis', AvisController::class)->only(['store']);
+    Route::apiResource('/commandes',CommandeController::class)->only(['index']);
 
     Route::middleware( 'is_staff')->group(function () {
         Route::get('/users', [UserController::class, 'index']);
