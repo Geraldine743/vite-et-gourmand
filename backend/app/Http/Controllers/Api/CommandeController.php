@@ -147,8 +147,23 @@ class CommandeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Commande $commande)
     {
-        //
+        $currentUser = $request->user('sanctum');
+        if ($currentUser->id !== $commande->user_id && !$currentUser->isStaff()) {
+            return response()->json(['message' => 'Accès refusé'], 403);
+        }
+
+        if ($currentUser->id === $commande->user_id){
+            if ($commande->statut_commande_id !== 1) {
+                return response()->json(['message' => 'Impossible de supprimer la commande. Veuillez contacter Vite&Goumand'], 400);
+            }
+            $commande->delete();
+            return response()->json(['message' => 'Commande supprimée']);
+        }
+        if ($currentUser->isStaff()) {
+            $commande->delete();
+            return response()->json(['message' => 'Commande supprimée']);
+        }
     }
 }
