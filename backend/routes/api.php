@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::put('/users/{user}', [UserController::class, 'update']);
     Route::apiResource('/avis', AvisController::class)->only(['store']);
-    Route::apiResource('/commandes',CommandeController::class)->only(['index']);
+    Route::apiResource('/commandes',CommandeController::class)->only(['index', 'store']);
 
     Route::middleware( 'is_staff')->group(function () {
         Route::get('/users', [UserController::class, 'index']);

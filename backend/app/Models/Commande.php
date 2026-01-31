@@ -43,7 +43,11 @@ class Commande extends Model
             if (empty($commande->numero_commande)) {
                 $commande->numero_commande = 'CMD-' . strtoupper(Str::random(8));
             }
+            if (empty($commande->date_commande)) {
+                $commande->date_commande = now();
+            }
         });
+
     }
 
     public function menus()
