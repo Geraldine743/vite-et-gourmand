@@ -1,0 +1,18 @@
+@use '../abstract/variables' as var;
+
+body {
+    background-color: var.$bg-app;
+    color: var.$secondary;
+    font-family: var.$font-text;
+    font-size: 16px; 
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    font-family: var.$font-title;
+    font-weight: 700;
+    color: var.$secondary;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
