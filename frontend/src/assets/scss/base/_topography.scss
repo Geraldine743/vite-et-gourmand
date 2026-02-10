@@ -1,4 +1,7 @@
 @use '../abstract/variables' as var;
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     background-color: var.$bg-app;

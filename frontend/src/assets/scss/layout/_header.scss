@@ -1,0 +1,121 @@
+@use '../abstract/variables' as var;
+@use '../abstract/mixins' as mixin;
+.header {
+    background-color: var.$white; 
+    height: 4.5rem;
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    &__container {
+        @include mixin.display (flex, space-between, center);
+        height: 100%;
+        padding: 0 1.5rem;
+    }
+
+    &__logo {
+        @include mixin.display (flex, start, center);
+    }
+    &__logo img {
+        width: 10rem;
+        height: auto;
+    }
+
+    &__link {
+        color: var.$secondary;
+        font-weight: 500;
+        transition: color 0.3s;
+
+        &:hover, &.router-link-active {
+            color: var.$primary;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        &__burger {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        &__burger-img {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease 0.3s, visibility 0s 0.3s;
+            &.is-hidden {
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0s;
+            }
+        }
+
+        &__nav {
+            position: fixed;
+            top: 0;
+            right: -100%; 
+            width: 280px;
+            height: 100vh;
+            background-color: var.$white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 2rem;
+            transition: all 0.2s ease-in;
+            z-index: 1001;
+
+            &.is-open {
+                right: 0;
+            }
+        }
+
+        &__close {
+            display: block;
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+
+        &__list {
+            flex-direction: column;
+            width: 100%;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+    }
+
+    @media screen and (min-width: 768px) {
+        &__burger-img,
+        &__close {
+            display: none;
+        }
+
+        &__logo img {
+            width: 12rem;
+        }
+
+        &__nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        &__list {
+            display: flex;
+            gap: 2rem;
+        }
+        
+    }
+} 
