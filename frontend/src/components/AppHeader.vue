@@ -13,7 +13,7 @@ const closeMenu = () => {
         <div class="header__container">
             
             <router-link to="/" class="header__logo" @click="closeMenu">
-                <img src="@/assets/logo.png" alt="Logo Traiteur" class="header__logo-img">
+                <img src="@/assets/images/logo.png" alt="Logo Traiteur" class="header__logo-img">
             </router-link>
             <div class="burger">
                 <button class="header__burger-img" :class="{ 'is-hidden': isMenuOpen }" @click="isMenuOpen = true">
