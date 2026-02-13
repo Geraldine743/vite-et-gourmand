@@ -29,10 +29,12 @@
     }
 
     &__title {
-        color: var.$primary; 
         margin-bottom: 1.2rem;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        font-size: 0.8rem;
+        @media (min-width: 769px) {
+            font-size: 1rem;
+        }
     }
 
     &__schedule {
