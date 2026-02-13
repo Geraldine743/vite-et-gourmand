@@ -1,4 +1,27 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import api from '@/services/api';
+import type { Avis } from '@/types'; 
+
+const reviews = ref<Avis[]>([]);
+
+onMounted(async () => {
+  try {
+    const response = await api.get('/avis');
+    reviews.value = response.data;
+  } catch (error) {
+    console.error("Erreur chargement avis", error);
+  } 
+});
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(date);
+};
+
+const formatNote = (n: number) => {
+  return Number.isInteger(n) ? `${n}.0` : n.toString();
+};
 </script>
 
 <template>
@@ -64,6 +87,44 @@
         alt="Sélection de produits frais et de saison" 
         class="quality__img" 
       />
+    </div>
+  </section>
+
+  <section class="reviews">
+    <div class="reviews__container">
+      
+      <h2 class="reviews__title">Ils ont goûté, ils ont aimé.</h2>
+
+      <div class="reviews__grid">
+        
+        <article v-for="avis in reviews" :key="avis.id" class="reviews__card">
+          
+          <div class="reviews__rating">
+            <span class="reviews__score">{{ formatNote(avis.note) }}</span>
+            <span class="reviews__max">/5</span>
+          </div>
+
+          <blockquote class="reviews__content">
+            "{{ avis.description }}"
+          </blockquote>
+
+          <div class="reviews__author">
+            <div class="reviews__meta">
+              <span class="name">{{ avis.user.firstname }} {{ avis.user.lastname }}</span>
+              <span class="date">Visité en {{ formatDate(avis.created_at) }}</span>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <div class="reviews__action">
+        <router-link to="/avis" class="button button--outline">
+          Lire tous les avis
+        </router-link>
+      </div>
+
     </div>
   </section>
 

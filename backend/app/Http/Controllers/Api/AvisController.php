@@ -17,7 +17,7 @@ class AvisController extends Controller
         if ($currentUser && $currentUser->isStaff()) {
             return Avis::with('user')->get();
         }
-        return Avis::where('publie', true)->with('user')->get();
+        return Avis::where('publie', true)->with('user')->latest()->take(3)->get();
     }
     
     /**

@@ -18,7 +18,7 @@ class AvisFactory extends Factory
     public function definition(): array
     {
         return [
-            'description' => $this->faker->text(900),
+            'description' => $this->faker->text(50),
             'note' => $this->faker->numberBetween(1, 5),
             'publie' => $this->faker->boolean(80),
             'user_id' => User::factory(),

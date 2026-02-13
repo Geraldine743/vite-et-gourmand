@@ -80,3 +80,118 @@
     }
 }
 
+
+.reviews {
+    padding: 60px 20px;
+
+    &__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center; 
+    }
+
+    &__title {
+        margin-bottom: 3rem;
+        font-size: 1.3rem;
+        @media (min-width: 769px) {
+            font-size: 1.8rem;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: 1fr; 
+
+        @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__card {
+        background-color: var.$white;
+        padding: 30px;
+        border-radius: 16px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        text-align: left;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px); 
+        }
+    }
+
+    &__rating {
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+        margin-bottom: 20px;
+    }
+
+    &__score {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var.$primary; 
+        line-height: 1;
+    }
+
+    &__max {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    &__content {
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex: 1; 
+    }
+
+    &__author {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        border-top: 1px solid rgba(var.$secondary, 0.1); 
+        width: 100%;
+        padding-top: 15px;
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: column;
+
+        .name {
+            font-weight: 700;
+            padding-bottom: 0.5rem;
+        }
+
+        .date {
+            font-size: 0.8rem;
+            color: rgba(var.$secondary, 0.6);
+        }
+    }
+
+    &__action {
+        margin-top: 4rem;
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var.$primary;
+            color: var.$white;
+            border-radius: var.$radius;
+            font-weight: 600;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+                &:hover {
+                    transform: scale(1.05);
+                    background-color: darken($color: var.$primary, $amount: 10%);
+                }
+        }
+    }
+}
