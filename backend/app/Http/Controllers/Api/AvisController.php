@@ -11,15 +11,23 @@ class AvisController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
+    {
+        return Avis::where('publie', true)->with('user')->latest()->take(3)->get();
+    }
+
+    public function all(Request $request)
     {
         $currentUser = $request->user('sanctum');
         if ($currentUser && $currentUser->isStaff()) {
-            return Avis::with('user')->get();
+            return Avis::with('user')->latest()->paginate(6);
         }
-        return Avis::where('publie', true)->with('user')->latest()->take(3)->get();
+        return Avis::with('user')
+                ->where('publie', true)
+                ->latest()
+                ->paginate(6); 
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */

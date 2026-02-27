@@ -1,6 +1,4 @@
 <?php
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AvisController;
@@ -21,7 +19,7 @@ Route::apiResource('/regimes',RegimeController::class)->only(['index']);
 Route::apiResource('/themes',ThemeController::class)->only(['index']);
 Route::apiResource('/menus',MenuController::class)->only(['index','show']);
 Route::apiResource('/horaires',HoraireController::class)->only(['index']);
-Route::apiResource('/avis', AvisController::class)->only(['index']);
+Route::apiResource('/avis', AvisController::class)->only(['index', 'all']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
