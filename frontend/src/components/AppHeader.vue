@@ -18,7 +18,7 @@ const closeMenu = () => {
             <div class="burger">
                 <button class="header__burger-img" :class="{ 'is-hidden': isMenuOpen }" @click="isMenuOpen = true">
                     <span class="burger-icon">☰</span>
-            </button>
+                </button>
             </div>
         
             <nav class="header__nav" :class="{ 'is-open': isMenuOpen }">
@@ -43,8 +43,6 @@ const closeMenu = () => {
                     </li>
                 </ul>
             </nav>
-
-            <div class="header__overlay" v-if="isMenuOpen" @click="closeMenu"></div>
 
         </div>
     </header>

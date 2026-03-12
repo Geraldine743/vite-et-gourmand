@@ -19,7 +19,8 @@ Route::apiResource('/regimes',RegimeController::class)->only(['index']);
 Route::apiResource('/themes',ThemeController::class)->only(['index']);
 Route::apiResource('/menus',MenuController::class)->only(['index','show']);
 Route::apiResource('/horaires',HoraireController::class)->only(['index']);
-Route::apiResource('/avis', AvisController::class)->only(['index', 'all']);
+Route::apiResource('/avis', AvisController::class)->only(['index']);
+Route::get('/avis-all', [AvisController::class, 'all']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
