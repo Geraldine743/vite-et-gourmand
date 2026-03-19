@@ -23,16 +23,6 @@
         height: auto;
     }
 
-    &__link {
-        color: var.$secondary;
-        font-weight: 700;
-        transition: color 0.3s;
-
-        &:hover, &.router-link-active {
-            color: var.$primary;
-        }
-    }
-
     @media screen and (max-width: 767px) {
         &__burger {
             display: flex;
@@ -93,8 +83,8 @@
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-
     }
+
 
     @media screen and (min-width: 768px) {
         &__burger-img,
@@ -117,5 +107,14 @@
             gap: 2rem;
         }
         
+        &__link {
+            color: var.$secondary;
+            font-weight: 700;
+            transition: color 0.3s;
+
+            &:hover, &.router-link-active {
+                color: var.$primary;
+        }
+    }
     }
 } 

@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import api from '@/services/api';
-
-// ✅ ON IMPORTE L'INTERFACE AU LIEU DE LA CRÉER
 import type { Horaire } from '@/types'; 
 
-// TypeScript reconnait maintenant "Horaire" grâce à l'import
 const horaires = ref<Horaire[]>([]);
-
-// ... le reste du code reste identique (formatHeure, onMounted...)
 const formatHeure = (time: string) => {
     if (!time) return 'Fermé';
     return time.slice(0, 5).replace(':', 'h');
