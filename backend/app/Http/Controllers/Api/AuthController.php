@@ -18,7 +18,7 @@ class AuthController extends Controller
         ]);
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Invalid login details'], 401);
+            return response()->json(['message' => 'Identifiants incorrects'], 401);
         }
 
         $user = User::where('email', $request->email)->firstOrFail();
