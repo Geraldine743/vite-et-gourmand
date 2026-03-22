@@ -14,6 +14,7 @@ const form = ref({
     address: '',
     city: '',
     postal_code: '',
+    country: '',
     password: '',
     password_confirmation: '' 
 });
@@ -87,6 +88,11 @@ const handleRegister = async () => {
                 <div class="auth-form__group">
                     <label for="postal_code" class="auth-form__label">Code postal</label>
                     <input type="text" id="postal_code" v-model="form.postal_code" class="auth-form__input" required />
+                </div>
+                
+                <div class="auth-form__group">
+                    <label for="country" class="auth-form__label">Pays</label>
+                    <input type="text" id="country" v-model="form.country" class="auth-form__input" required />
                 </div>
 
                 <div class="auth-form__row">
