@@ -26,6 +26,19 @@ export const useAuthStore = defineStore('auth', {
         this.user = null;
         this.token = null;
         localStorage.removeItem('token');
+      },
+
+      async register(userData: any) {
+        const response = await api.post('/register', userData);
+        const monToken = response.data.access_token; 
+
+        if (monToken) {
+          this.token = monToken;
+          this.user = response.data.user;
+          localStorage.setItem('token', monToken as string);
+        } else {
+          throw new Error("Aucun token reçu après l'inscription");
+        }
       }
     }
 });
