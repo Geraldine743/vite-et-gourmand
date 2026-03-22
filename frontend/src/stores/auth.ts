@@ -16,7 +16,8 @@ export const useAuthStore = defineStore('auth', {
     actions: {
       async login(credentials: any) {
         const response = await api.post('/login', credentials);
-        this.token = response.data.token;
+        console.log("Réponse de Laravel :", response.data);
+        this.token = response.data.access_token;
         this.user = response.data.user;
         localStorage.setItem('token', this.token as string);
       },

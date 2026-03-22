@@ -1,0 +1,107 @@
+@use '../abstract/variables' as var;
+@use '../abstract/mixins' as mixin;
+
+.auth-page {
+    background-color: var.$bg-app; 
+    min-height: 80vh;
+    @include mixin.display (flex, center, center);
+    padding: 40px 20px;
+
+    &__container {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+.auth-form {
+    background-color: var.$white;
+    padding: 40px;
+    border-radius: var.$radius;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        font-family: var.$font-title;
+        color: var.$primary; 
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    &__subtitle {
+        text-align: center;
+        color: var.$secondary;
+        margin-bottom: 30px;
+        font-size: 0.95rem;
+    }
+
+    &__error {
+        background-color: var.$error-bg;
+        color: var.$error-text;
+        padding: 15px;
+        border-radius: var.$radius;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    &__group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        font-family: var.$font-title;
+        font-size: 0.9rem;
+        color: var.$secondary;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    &__input {
+        padding: 12px 15px;
+        border: 1px solid rgba(var.$secondary, 0.2);
+        border-radius: var.$radius;
+        font-family: var.$font-text;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+
+        &:focus {
+            outline: none;
+            border-color: var.$primary;
+        }
+    }
+
+    &__submit {
+        margin-top: 10px;
+        width: 100%;
+        font-size: 1rem;
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: var.$primary;
+        color: var.$white;
+        border-radius: var.$radius;
+        font-weight: 500;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+            &:hover {
+                transform: scale(1.05);
+                background-color: darken($color: var.$primary, $amount: 10%);
+            }
+    }
+
+    &__footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: var.$secondary;
+    }
+
+    &__link {
+        color: var.$primary;
+        font-weight: bold;
+        text-decoration: none;
+        &:hover { text-decoration: underline; }
+    }
+}
