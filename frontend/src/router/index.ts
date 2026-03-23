@@ -3,6 +3,9 @@ import HomeView from '../views/HomeView.vue'
 import AvisView from '@/views/AvisView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import DashboardHome from '@/views/admin/DashboardHome.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +34,34 @@ const router = createRouter({
       name: 'register',
       component: RegisterView
     },
+
+    {
+      path: '/admin',
+      component: DashboardLayout, 
+      meta: { requiresAuth: true, requiresStaff: true },
+      children: [
+        {
+          path: '', 
+          name: 'admin-home',
+          component: DashboardHome
+        },
+      ],
+    },
+
   ],
 })
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    return next('/login');
+  }
+  if (to.meta.requiresStaff && !authStore.isStaff) {
+    return next('/');
+  }
+  next();
+  
+});
 
 export default router
