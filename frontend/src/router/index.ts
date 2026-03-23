@@ -38,7 +38,7 @@ const router = createRouter({
     {
       path: '/admin',
       component: DashboardLayout, 
-      meta: { requiresAuth: true, requiresStaff: true },
+      meta: { requiresAuth: true, requiresStaff: true, hidePublicNav: true},
       children: [
         {
           path: '', 
