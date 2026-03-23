@@ -1,0 +1,12 @@
+@use '../abstract/variables' as var;
+
+.admin-title {
+    font-family: var.$font-title;
+    color: var.$secondary;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.admin-subtitle {
+    color: var.$text-dark;
+}
