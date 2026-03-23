@@ -18,7 +18,11 @@ const handleLogin = async () => {
 
   try {
     await authStore.login(form.value);
-    router.push('/');
+    if (authStore.isStaff) {
+      router.push('/admin');
+    } else {
+      router.push('/');
+    }
   } catch (error: any) {
     if (error.response?.status === 401 || error.response?.status === 422) {
       errorMessage.value = "Identifiants incorrects. Veuillez réessayer.";
