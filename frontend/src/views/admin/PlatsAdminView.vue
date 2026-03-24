@@ -19,10 +19,21 @@ const form = ref({
 
 const handleImageUpload = (event: Event) => {
     const target = event.target as HTMLInputElement;
+    
     if (target && target.files && target.files.length > 0) {
-        form.value.image = target.files[0] || null;
+        const file = target.files[0];
+        
+        // On vérifie que le fichier fait moins de 2 Mo (2 * 1024 * 1024 octets)
+        if (file && file.size > 2 * 1024 * 1024) {
+            alert("L'image est trop lourde ! Veuillez choisir une image de moins de 2 Mo.");
+            target.value = ''; // On vide le champ
+            form.value.image = null;
+            return;
+        }
+        
+        form.value.image = file || null;
     } else {
-        form.value.image = null; 
+        form.value.image = null;
     }
 };
 
@@ -160,7 +171,7 @@ onMounted(() => {
 
                     <tr v-for="plat in plats" :key="plat.id">
                         <td>
-                            <img v-if="plat.image" :src=" plat.image " alt="Miniature" class="admin-table__img" />
+                            <img v-if="plat.image" :src=" 'http://localhost:8000/storage/' + plat.image " alt="Miniature" class="admin-table__img" />
                             <span v-else class="admin-table__no-img">?</span>
                         </td>
                         <td class="font-bold">{{ plat.titre_plat }}</td>
