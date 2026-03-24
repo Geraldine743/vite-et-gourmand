@@ -71,8 +71,9 @@ class PlatController extends Controller
             if ($plat->image) {
                 Storage::disk('public')->delete($plat->image);
             }
-            $imagePath = $request->file('image')->store('plats', 'public');
-            $plat->image = $imagePath;
+            $validatedData['image'] = $request->file('image')->store('plats', 'public');
+        }else{
+            unset($validatedData['image']);
         }
         $plat->update($validatedData);
         if ($request->has('allergenes')) {
