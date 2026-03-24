@@ -113,6 +113,17 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'host'     => env('DB_HOST_MONGO', 'mongo'),
+            'port'     => env('DB_PORT_MONGO', 27017),
+            'database' => env('DB_DATABASE_MONGO', 'restaurant_analytics'),
+            'username' => env('DB_USERNAME_MONGO', 'root'),
+            'password' => env('DB_PASSWORD_MONGO', 'rootpassword'),
+            'options'  => [
+                'database' => 'admin' 
+            ],
+        ],
     ],
 
     /*
@@ -177,7 +188,5 @@ return [
             'backoff_base' => env('REDIS_BACKOFF_BASE', 100),
             'backoff_cap' => env('REDIS_BACKOFF_CAP', 1000),
         ],
-
     ],
-
 ];

@@ -62,10 +62,9 @@ const router = createRouter({
           path: 'menus', 
           name: 'admin-menus',
           component: MenusAdminView
-        }
+        },
       ],
     },
-
   ],
 })
 

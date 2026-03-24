@@ -24,6 +24,7 @@ Route::apiResource('/horaires',HoraireController::class)->only(['index']);
 Route::apiResource('/avis', AvisController::class)->only(['index']);
 Route::apiResource('/types-plats', TypePlatController::class)->only(['index']);
 Route::get('/avis-all', [AvisController::class, 'all']);
+Route::post('/chiffre-affaires/generate', [ChiffreAffaireController::class, 'generate']); 
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -49,7 +50,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('is_admin')->group(function () {
         Route::post('/users', [UserController::class, 'store']);
         Route::delete('/users/{id}', [UserController::class, 'destroy']);
-        Route::get('/chiffre-affaires', [ChiffreAffaireController::class, 'index']);
-        Route::post('/chiffre-affaires/generate', [ChiffreAffaireController::class, 'generate']);     
+        Route::get('/chiffre-affaires', [ChiffreAffaireController::class, 'index']);    
     });
 });
