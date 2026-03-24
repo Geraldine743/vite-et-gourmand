@@ -14,6 +14,19 @@ const fetchPlats = async () => {
     } 
 };
 
+const deletePlat = async (id: number) => {
+    if (!confirm("Êtes-vous sûr de vouloir supprimer ce plat ?")) return;
+
+    try {
+        await api.delete(`/plats/${id}`);
+        plats.value = plats.value.filter(plat => plat.id !== id);
+        alert("Le plat a été supprimé !");
+    } catch (error) {
+        console.error("Erreur lors de la suppression :", error);
+        alert("Impossible de supprimer ce plat.");
+    }
+};
+
 onMounted(() => fetchPlats());
 </script>
 
@@ -65,7 +78,7 @@ onMounted(() => fetchPlats());
                         </td>
                         <td class="admin-table__actions text-right">
                             <button class="btn-action btn-action--edit" title="Modifier">✏️</button>
-                            <button class="btn-action btn-action--delete" title="Supprimer">🗑️</button>
+                            <button class="btn-action btn-action--delete" @click="deletePlat(plat.id)" title="Supprimer">🗑️</button>
                         </td>
                     </tr>
                 </tbody>
