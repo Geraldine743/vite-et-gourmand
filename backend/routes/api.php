@@ -1,15 +1,16 @@
 <?php
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AllergeneController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AvisController;
+use App\Http\Controllers\Api\CommandeController;
+use App\Http\Controllers\Api\HoraireController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\PlatController;
-use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\ThemeController;
 use App\Http\Controllers\Api\RegimeController;
-use App\Http\Controllers\Api\HoraireController;
-use App\Http\Controllers\Api\CommandeController;
-use App\Http\Controllers\Api\AllergeneController;
+use App\Http\Controllers\Api\ThemeController;
+use App\Http\Controllers\Api\TypePlatController;
+use App\Http\Controllers\Api\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -20,6 +21,7 @@ Route::apiResource('/themes',ThemeController::class)->only(['index']);
 Route::apiResource('/menus',MenuController::class)->only(['index','show']);
 Route::apiResource('/horaires',HoraireController::class)->only(['index']);
 Route::apiResource('/avis', AvisController::class)->only(['index']);
+Route::apiResource('/types-plats', TypePlatController::class)->only(['index']);
 Route::get('/avis-all', [AvisController::class, 'all']);
 
 
