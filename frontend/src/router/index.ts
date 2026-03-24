@@ -7,6 +7,7 @@ import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import DashboardHome from '@/views/admin/DashboardHome.vue'
 import { useAuthStore } from '@/stores/auth'
 import PlatsAdminView from '@/views/admin/PlatsAdminView.vue'
+import HorairesAdminView from '@/views/admin/HorairesAdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +52,11 @@ const router = createRouter({
           name: 'admin-plats',
           component: PlatsAdminView
         },
+        {
+          path: 'horaires', 
+          name: 'admin-horaires',
+          component: HorairesAdminView
+        }
       ],
     },
 
