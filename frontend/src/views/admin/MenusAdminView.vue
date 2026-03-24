@@ -10,9 +10,6 @@ const themes = ref<Theme[]>([]);
 
 const showModal = ref(false);
 const isEditing = ref(false);
-
-// 💡 L'astuce : On sépare automatiquement les plats par type !
-// (On part du principe que type_plat_id : 1 = Entrée, 2 = Plat, 3 = Dessert)
 const entrees = computed(() => plats.value.filter(p => p.type_plat_id === 1));
 const platsPrincipaux = computed(() => plats.value.filter(p => p.type_plat_id === 2));
 const desserts = computed(() => plats.value.filter(p => p.type_plat_id === 3));
@@ -27,16 +24,13 @@ const form = ref({
     condition: '',
     regime_id: '' as number | '',
     theme_id: '' as number | '',
-    // On sépare les 3 choix pour le formulaire
     entree_id: '' as number | '',
     plat_id: '' as number | '',
     dessert_id: '' as number | ''
 });
 
-// --- CHARGEMENT DES DONNÉES ---
 const fetchData = async () => {
     try {
-        // On lance toutes les requêtes en parallèle pour aller plus vite !
         const [resMenus, resPlats, resRegimes, resThemes] = await Promise.all([
             api.get('/menus'),
             api.get('/plats'),
@@ -53,7 +47,6 @@ const fetchData = async () => {
     }
 };
 
-// --- GESTION DE LA MODALE ---
 const openAddModal = () => {
     isEditing.value = false;
     form.value = {
@@ -67,7 +60,6 @@ const openAddModal = () => {
 const openEditModal = (menu: Menu) => {
     isEditing.value = true;
     
-    // On retrouve l'entrée, le plat et le dessert parmi les plats du menu
     const currentEntree = menu.plats?.find(p => p.type_plat_id === 1);
     const currentPlat = menu.plats?.find(p => p.type_plat_id === 2);
     const currentDessert = menu.plats?.find(p => p.type_plat_id === 3);
@@ -91,10 +83,8 @@ const openEditModal = (menu: Menu) => {
 
 const closeModal = () => showModal.value = false;
 
-// --- SAUVEGARDE ---
 const saveMenu = async () => {
     try {
-        // On prépare les données à envoyer à Laravel
         const payload = {
             titre: form.value.titre,
             description: form.value.description,
@@ -104,7 +94,6 @@ const saveMenu = async () => {
             condition: form.value.condition,
             regime_id: form.value.regime_id,
             theme_id: form.value.theme_id,
-            // On regroupe les 3 IDs dans un tableau pour que Laravel fasse un sync()
             plats: [form.value.entree_id, form.value.plat_id, form.value.dessert_id].filter(id => id !== '')
         };
 
@@ -117,7 +106,7 @@ const saveMenu = async () => {
         }
 
         closeModal();
-        fetchData(); // Rafraîchit le tableau
+        fetchData(); 
 
     } catch (error: any) {
         console.error("Erreur de sauvegarde :", error);
