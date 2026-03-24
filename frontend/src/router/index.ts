@@ -6,6 +6,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import DashboardHome from '@/views/admin/DashboardHome.vue'
 import { useAuthStore } from '@/stores/auth'
+import PlatsAdminView from '@/views/admin/PlatsAdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
           path: '', 
           name: 'admin-home',
           component: DashboardHome
+        },
+        {
+          path: 'plats', 
+          name: 'admin-plats',
+          component: PlatsAdminView
         },
       ],
     },
