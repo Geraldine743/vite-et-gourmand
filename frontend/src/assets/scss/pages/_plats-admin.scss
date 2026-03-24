@@ -29,6 +29,14 @@
     border-collapse: collapse;
     text-align: left;
 
+    &__img{
+        width: 60px;        
+        height: 60px;        
+        object-fit: cover;    
+        border-radius: var.$radius;  
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
     th, td {
         padding: 15px 20px;
         border-bottom: 1px solid rgba(var.$secondary, 0.1);
