@@ -115,3 +115,10 @@ export interface Horaire {
     heure_ouverture: string; 
     heure_fermeture: string; 
 }
+
+export interface ChiffreAffaire {
+    _id: string; 
+    date: string;
+    montant_total: number;
+    nombre_commandes: number;
+}

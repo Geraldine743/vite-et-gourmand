@@ -9,6 +9,7 @@ import { useAuthStore } from '@/stores/auth'
 import PlatsAdminView from '@/views/admin/PlatsAdminView.vue'
 import HorairesAdminView from '@/views/admin/HorairesAdminView.vue'
 import MenusAdminView from '@/views/admin/MenusAdminView.vue'
+import ChiffreAffaireAdminView from '@/views/admin/ChiffreAffaireAdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,6 +63,11 @@ const router = createRouter({
           path: 'menus', 
           name: 'admin-menus',
           component: MenusAdminView
+        },
+        {
+          path: 'statistiques', 
+          name: 'admin-statistiques',
+          component: ChiffreAffaireAdminView
         },
       ],
     },
