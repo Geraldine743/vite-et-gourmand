@@ -101,3 +101,22 @@
         accent-color: var.$primary; 
     }
 }
+
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.gap-1 { gap: 4px; }
+.mt-1 { margin-top: 4px; }
