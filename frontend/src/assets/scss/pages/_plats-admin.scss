@@ -1,0 +1,112 @@
+@use '../abstract/variables' as var;
+@use '../abstract/mixins' as mixin;
+
+.admin-plats {
+    &__header {
+        @include mixin.display (flex, space-between, center);
+        margin-bottom: 30px;
+        flex-wrap: wrap; 
+        gap: 15px;
+    }
+}
+
+.admin-title {
+    font-family: var.$font-title;
+    color: var.$secondary;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.admin-table-container {
+    background: var.$white;
+    border-radius: var.$radius;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th, td {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(var.$secondary, 0.1);
+    }
+
+    th {
+        background-color: rgba(var.$secondary, 0.02);
+        font-family: var.$font-title;
+        color: var.$secondary;
+        font-weight: 600;
+    } 
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover {
+        background-color: rgba(var.$secondary, 0.01);
+    }
+
+    &__actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+}
+
+.font-bold {
+    font-weight: 700;
+    color: var.$secondary;
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.badge {
+    background-color: var.$bg-app;
+    color: var.$secondary;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.allergene-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.badge-allergene {
+    background-color: #fff3e0; 
+    color: #e65100; 
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.text-muted {
+    color: rgba(var.$secondary, 0.4);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.btn-action {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: transform 0.2s, background-color 0.2s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &--edit:hover { background-color: rgba(#4CAF50, 0.1); }
+    &--delete:hover { background-color: rgba(#F44336, 0.1); }
+}
