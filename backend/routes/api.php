@@ -2,6 +2,7 @@
 use App\Http\Controllers\Api\AllergeneController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AvisController;
+use App\Http\Controllers\Admin\ChiffreAffaireController;
 use App\Http\Controllers\Api\CommandeController;
 use App\Http\Controllers\Api\HoraireController;
 use App\Http\Controllers\Api\MenuController;
@@ -48,5 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('is_admin')->group(function () {
         Route::post('/users', [UserController::class, 'store']);
         Route::delete('/users/{id}', [UserController::class, 'destroy']);
+        Route::get('/chiffre-affaires', [ChiffreAffaireController::class, 'index']);
+        Route::post('/chiffre-affaires/generate', [ChiffreAffaireController::class, 'generate']);     
     });
 });
