@@ -22,8 +22,9 @@ Route::apiResource('/themes',ThemeController::class)->only(['index']);
 Route::apiResource('/menus',MenuController::class)->only(['index','show']);
 Route::apiResource('/horaires',HoraireController::class)->only(['index']);
 Route::apiResource('/avis', AvisController::class)->only(['index']);
+Route::get('/avis-all', [AvisController::class, 'all']);
 Route::apiResource('/types-plats', TypePlatController::class)->only(['index']);
-Route::post('/chiffre-affaires/generate', [ChiffreAffaireController::class, 'generate']); 
+Route::post('/chiffre-affaires/generate', [ChiffreAffaireController::class, 'generate']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
