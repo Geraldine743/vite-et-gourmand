@@ -19,6 +19,17 @@ const fetchAvis = async (page = 1) => {
     } 
 };
 
+const togglePublie = async (avis: Avis) => {
+    try {
+        const newStatut = !avis.publie;
+        await api.put(`/avis/${avis.id}`, { publie: newStatut });
+        avis.publie = newStatut;
+    } catch (error) {
+        console.error("Erreur lors de la modification du statut :", error);
+        alert("Impossible de modifier le statut de cet avis.");
+    }
+};
+
 const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
@@ -63,6 +74,7 @@ onMounted(() => {
                         <div class="action-buttons">
                             <button 
                                 class="btn-toggle" 
+                                @click="togglePublie(avis)"
                                 :class="avis.publie ? 'btn-toggle--hide' : 'btn-toggle--publish'">
                                 {{ avis.publie ? ' Masquer' : ' Publier' }}
                             </button>
