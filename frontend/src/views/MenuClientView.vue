@@ -18,6 +18,18 @@ const fetchMenus = async () => {
     }
 };
 
+const nextImage = (menu: Menu) => {
+    if (menu.plats.length === 0) return;
+    const currentIndex = carouselIndexes.value[menu.id] ?? 0;
+    carouselIndexes.value[menu.id] = (currentIndex + 1) % menu.plats.length;
+};
+
+const prevImage = (menu: Menu) => {
+    if (menu.plats.length === 0) return;
+    const currentIndex = carouselIndexes.value[menu.id] ?? 0;
+    carouselIndexes.value[menu.id] = currentIndex === 0 ? menu.plats.length - 1 : currentIndex - 1;
+};
+
 const getUniqueAllergenes = (menu: Menu): Allergene[] => {
     if (!menu.plats) return [];
     const tousLesAllergenes = menu.plats.flatMap(plat => plat.allergenes || []);
@@ -37,6 +49,25 @@ onMounted(() => fetchMenus());
                     <div class="badges-container">
                         <span v-if="menu.theme" class="badge badge--theme">{{ menu.theme.libelle }}</span>
                         <span v-if="menu.regime" class="badge badge--regime">{{ menu.regime.libelle }}</span>
+                    </div>
+                    <div v-if="menu.plats && menu.plats.length > 0" class="carousel-wrapper">
+                        <img 
+                            :src="'http://localhost:8000/storage/' +menu.plats[carouselIndexes[menu.id] ?? 0]?.image || '/placeholder-food.jpg'" 
+                            :alt="menu.plats[carouselIndexes[menu.id] ?? 0]?.titre_plat"
+                            class="carousel-image"
+                        />
+                        
+                        <button v-if="menu.plats.length > 1" @click.stop="prevImage(menu)" class="carousel-btn prev">❮</button>
+                        <button v-if="menu.plats.length > 1" @click.stop="nextImage(menu)" class="carousel-btn next">❯</button>
+                        
+                        <div v-if="menu.plats.length > 1" class="carousel-dots">
+                            <span 
+                                v-for="(_, index) in menu.plats" 
+                                :key="index"
+                                class="dot"
+                                :class="{ active: carouselIndexes[menu.id] === index }"
+                            ></span>
+                        </div>
                     </div>
 
                 </div>
