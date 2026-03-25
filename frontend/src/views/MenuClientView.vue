@@ -17,6 +17,13 @@ const fetchMenus = async () => {
         console.error("Erreur de chargement des menus :", error);
     }
 };
+
+const getUniqueAllergenes = (menu: Menu): Allergene[] => {
+    if (!menu.plats) return [];
+    const tousLesAllergenes = menu.plats.flatMap(plat => plat.allergenes || []);
+    return Array.from(new Map(tousLesAllergenes.map(a => [a.id, a])).values());
+};
+
 onMounted(() => fetchMenus());
 </script>
 
@@ -43,6 +50,14 @@ onMounted(() => fetchMenus());
                         <ul>
                             <li v-for="plat in menu.plats" :key="plat.id">{{ plat.titre_plat }}</li>
                         </ul>
+                    </div>
+                    <div class="menu-allergenes mt-3" v-if="getUniqueAllergenes(menu).length > 0">
+                        <h3 class="section-subtitle">Allergènes présents :</h3>
+                        <div class="allergenes-list">
+                            <span v-for="alg in getUniqueAllergenes(menu)" :key="alg.id" class="allergene-badge">
+                                ⚠️ {{ alg.libelle }}
+                            </span>
+                        </div>
                     </div>
                 </div>
 
