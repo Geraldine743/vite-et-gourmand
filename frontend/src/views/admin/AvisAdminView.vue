@@ -30,6 +30,18 @@ const togglePublie = async (avis: Avis) => {
     }
 };
 
+const deleteAvis = async (id: number) => {
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cet avis définitivement ?")) return;
+    
+    try {
+        await api.delete(`/avis/${id}`);
+        avisList.value = avisList.value.filter(a => a.id !== id);
+    } catch (error) {
+        console.error("Erreur lors de la suppression :", error);
+        alert("Impossible de supprimer cet avis.");
+    }
+};
+
 const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
@@ -78,7 +90,7 @@ onMounted(() => {
                                 :class="avis.publie ? 'btn-toggle--hide' : 'btn-toggle--publish'">
                                 {{ avis.publie ? ' Masquer' : ' Publier' }}
                             </button>
-                            <button  class="btn-delete" title="Supprimer">🗑️</button>
+                            <button  class="btn-delete" @click="deleteAvis(avis.id)" title="Supprimer">🗑️</button>
                         </div>
                     </div>
                 </div>
