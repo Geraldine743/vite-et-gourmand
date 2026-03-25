@@ -10,6 +10,7 @@ import PlatsAdminView from '@/views/admin/PlatsAdminView.vue'
 import HorairesAdminView from '@/views/admin/HorairesAdminView.vue'
 import MenusAdminView from '@/views/admin/MenusAdminView.vue'
 import ChiffreAffaireAdminView from '@/views/admin/ChiffreAffaireAdminView.vue'
+import EquipeAdminView from '@/views/admin/EquipeAdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +69,11 @@ const router = createRouter({
           path: 'statistiques', 
           name: 'admin-statistiques',
           component: ChiffreAffaireAdminView
+        },
+        {
+          path: 'equipe', 
+          name: 'admin-equipe',
+          component: EquipeAdminView
         },
       ],
     },

@@ -17,6 +17,13 @@ class UserController extends Controller
         return User::with('role')->get();
     }
 
+    public function getStaff()
+    {
+        $staff = User::with('role')->where('role_id', '=', 2)->get();
+        
+        return response()->json($staff);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -86,9 +93,21 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, $id) 
     {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'Utilisateur introuvable.'], 404);
+        }
+
+        $currentUser = $request->user();
+        if ($currentUser && $currentUser->id === $user->id) {
+            return response()->json(['message' => 'Vous ne pouvez pas supprimer votre propre compte.'], 403);
+        }
+
         $user->delete();
-        return response()->json(['message' => 'Utilisateur supprimé'], 200);
+
+        return response()->json(['message' => 'Utilisateur supprimé avec succès !'], 200);
     }
 }

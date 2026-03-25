@@ -45,6 +45,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('/menus',MenuController::class)->except(['index','show']);
         Route::apiResource('/horaires',HoraireController::class)->except(['index']);
         Route::apiResource('/avis', AvisController::class)->except(['index','store','show']);
+        Route::get('/roles', function () { return \App\Models\Role::all(); });
+        Route::get('/staff', [UserController::class, 'getStaff']);
     });
 
     Route::middleware('is_admin')->group(function () {
