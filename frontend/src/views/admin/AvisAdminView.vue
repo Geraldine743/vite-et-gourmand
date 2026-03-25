@@ -64,7 +64,7 @@ onMounted(() => {
                             <button 
                                 class="btn-toggle" 
                                 :class="avis.publie ? 'btn-toggle--hide' : 'btn-toggle--publish'">
-                                {{ avis.publie ? '👁️ Masquer' : '🚀 Publier' }}
+                                {{ avis.publie ? ' Masquer' : ' Publier' }}
                             </button>
                             <button  class="btn-delete" title="Supprimer">🗑️</button>
                         </div>
