@@ -11,6 +11,7 @@ import HorairesAdminView from '@/views/admin/HorairesAdminView.vue'
 import MenusAdminView from '@/views/admin/MenusAdminView.vue'
 import ChiffreAffaireAdminView from '@/views/admin/ChiffreAffaireAdminView.vue'
 import EquipeAdminView from '@/views/admin/EquipeAdminView.vue'
+import AvisAdminView from '@/views/admin/AvisAdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -74,6 +75,11 @@ const router = createRouter({
           path: 'equipe', 
           name: 'admin-equipe',
           component: EquipeAdminView
+        },
+        {
+          path: 'avis', 
+          name: 'admin-avis',
+          component: AvisAdminView
         },
       ],
     },

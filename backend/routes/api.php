@@ -23,7 +23,6 @@ Route::apiResource('/menus',MenuController::class)->only(['index','show']);
 Route::apiResource('/horaires',HoraireController::class)->only(['index']);
 Route::apiResource('/avis', AvisController::class)->only(['index']);
 Route::apiResource('/types-plats', TypePlatController::class)->only(['index']);
-Route::get('/avis-all', [AvisController::class, 'all']);
 Route::post('/chiffre-affaires/generate', [ChiffreAffaireController::class, 'generate']); 
 
 
@@ -44,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('/themes',ThemeController::class)->except(['index','show']);
         Route::apiResource('/menus',MenuController::class)->except(['index','show']);
         Route::apiResource('/horaires',HoraireController::class)->except(['index']);
+        Route::get('/avis/all', [AvisController::class, 'all']);
         Route::apiResource('/avis', AvisController::class)->except(['index','store','show']);
         Route::get('/roles', function () { return \App\Models\Role::all(); });
         Route::get('/staff', [UserController::class, 'getStaff']);
