@@ -38,7 +38,6 @@ onMounted(() => fetchHoraires());
     <div class="admin-horaires">
         <div class="admin-horaires__header mb-4">
             <h1 class="admin-title">Gestion des Horaires</h1>
-            <p class="text-muted">Modifiez les heures d'ouverture et de fermeture pour chaque jour de la semaine.</p>
         </div>
 
         <div class="admin-table-container">

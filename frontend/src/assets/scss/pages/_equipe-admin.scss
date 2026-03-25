@@ -1,0 +1,19 @@
+@use '../abstract/mixins' as mixin;
+
+.admin-users {
+    &__header {
+        @include mixin.display (flex, space-between, center);
+        margin-bottom: 30px;
+        flex-wrap: wrap; 
+        gap: 15px;
+    }
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    &--admin { background: #fee2e2; color: #b91c1c; } /* Rouge pour les admins */
+    &--staff { background: #e0e7ff; color: #4338ca; } /* Bleu pour le staff */
+}
