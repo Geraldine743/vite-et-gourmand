@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AvisView from '@/views/AvisView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import MenuClientView from '@/views/MenuClientView.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import DashboardHome from '@/views/admin/DashboardHome.vue'
 import { useAuthStore } from '@/stores/auth'
@@ -39,6 +40,12 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView
+    },
+
+    {
+      path: '/menus',
+      name: 'menus',
+      component: MenuClientView
     },
 
     {
