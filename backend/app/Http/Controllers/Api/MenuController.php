@@ -13,7 +13,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return Menu::with('regime', 'theme', 'plats')->get();
+        return Menu::with(['regime', 'theme', 'plats.allergenes'])->get();
     }
 
     /**
